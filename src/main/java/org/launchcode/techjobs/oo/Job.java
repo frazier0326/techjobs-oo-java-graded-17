@@ -65,7 +65,8 @@ public class Job {
                 "Employer: " + stringEmployer + lineSeparator() +
                 "Location: " + stringLocation + lineSeparator() +
                 "Position Type: " + stringPositionType + lineSeparator() +
-                "Core Competency: " + stringCoreCompetency + lineSeparator();
+                "Core Competency: " + stringCoreCompetency +
+                lineSeparator();
     }
 
     @Override
