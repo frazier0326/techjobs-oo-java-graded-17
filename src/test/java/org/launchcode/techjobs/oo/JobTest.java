@@ -2,6 +2,7 @@ package org.launchcode.techjobs.oo;
 
 import org.junit.Test;
 
+import static java.lang.System.lineSeparator;
 import static org.junit.Assert.*;
 
 
@@ -45,4 +46,38 @@ public class JobTest {
 
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+//     Job job = new Job();
+//     String expected = lineSeparator() + "id=1, name='null', employer=null, location=null, positionType=null, coreCompetency=null" + lineSeparator();
+//     String outcome = job.toString();
+//     assertEquals(expected, outcome);
+        Job job = new Job("Junior Game Designer", new Employer("Red Barrels"), new Location("Montreal"), new PositionType("Designer"), new CoreCompetency("Creativity"));
+        assertEquals(job.toString().startsWith(lineSeparator()), true);
+        assertEquals(job.toString().endsWith(lineSeparator()), true);
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+    Job job = new Job("Junior Game Designer", new Employer("Red Barrels"), new Location("Montreal"), new PositionType("Designer"), new CoreCompetency("Creativity"));
+    assertEquals(job.toString(), lineSeparator() +
+            "ID: " + job.getId() + lineSeparator() +
+            "Name: " + job.getName() + lineSeparator() +
+            "Employer: " + job.getEmployer() + lineSeparator() +
+            "Location: " + job.getLocation() + lineSeparator() +
+            "Position Type: " + job.getPositionType() + lineSeparator() +
+            "Core Competency: " + job.getCoreCompetency() + lineSeparator());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job = new Job("Junior Game Designer", new Employer(""), new Location("Montreal"), new PositionType("Designer"), new CoreCompetency(""));
+        assertEquals(job.toString(), lineSeparator() +
+                "ID: " + job.getId() + lineSeparator() +
+                "Name: " + job.getName() + lineSeparator() +
+                "Employer: Data not available" + lineSeparator() +
+                "Location: " + job.getLocation() + lineSeparator() +
+                "Position Type: " + job.getPositionType() + lineSeparator() +
+                "Core Competency: Data not available" + lineSeparator());
+    }
 }
